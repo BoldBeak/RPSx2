@@ -14,11 +14,12 @@ function playerCHOICE() {
 
   let testInput = playerInput.toLowerCase();
 
-  if (CHOICE.includes(testInput) != true) {
-    prompt(`Oops! Check your spelling and try again!
+  while (CHOICE.includes(testInput) != true) {
+    testInput = prompt(`Oops! Check your spelling and try again.
     
-    Rock, Paper, or Scissors?`);
-  } else return testInput;
+    Rock, Paper, or Scissors?`)
+  } 
+  return testInput;
 }
 
 console.log(computerCHOICE());
