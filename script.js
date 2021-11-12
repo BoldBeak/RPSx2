@@ -97,11 +97,14 @@ function game() {
     return roundResult;
   };
 
-  console.log(getScore());
-  console.log(getScore());
-  console.log(getScore());
-  console.log(getScore());
-  console.log(getScore());
+  let i = 5;
+
+  while (i > 0) {
+    console.log(getScore());
+    i--;
+  };
+
+  console.log(scoreRound);
 };
 
 game();
