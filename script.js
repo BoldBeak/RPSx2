@@ -104,7 +104,13 @@ function game() {
     i--;
   };
 
-  console.log(scoreRound);
+  if (scoreRound.player == scoreRound.computer) {
+    console.log(`Looks like it's a tie game. Play again?`);
+  } else if (scoreRound.player > scoreRound.computer) {
+    console.log(`Congratulations! You won this match! Play again?`);
+  } else {
+    console.log(`Sorry... The computer won this match. Better luck next time!`);
+  }
 };
 
 game();
