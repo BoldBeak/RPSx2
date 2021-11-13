@@ -11,10 +11,10 @@ function computerCHOICE() {
 //get's human's selection (store in var)
 function playerCHOICE() {
   //random choice generator for effecient testing
-  return CHOICE[Math.floor(Math.random() * CHOICE.length)];
+  //return CHOICE[Math.floor(Math.random() * CHOICE.length)];
   
   //actual function for player input
-  /* let playerInput = prompt("Choose Rock, Paper, or Scissors");
+  let playerInput = prompt("Choose Rock, Paper, or Scissors");
 
   let testInput = playerInput.toLowerCase();
 
@@ -22,7 +22,8 @@ function playerCHOICE() {
     testInput = prompt(`Oops! Check your spelling and try again.
     
     Rock, Paper, or Scissors?`);
-  }  */
+  }  
+  
   return testInput;
 }
 // Test output
@@ -36,8 +37,8 @@ function playRound(playerSelection, computerSelection) {
   playerSelection = playerCHOICE();
   computerSelection = computerCHOICE();
 
-  console.log(playerSelection);
-  console.log(computerSelection);
+  // console.log(playerSelection);
+  // console.log(computerSelection);
 
   let winner = {
     'tie': `It's a tie. You and the computer both chose ${playerSelection}. Try again!`,
