@@ -13,23 +13,9 @@ function playerCHOICE() {
   //random choice generator for effecient testing
   //return CHOICE[Math.floor(Math.random() * CHOICE.length)];
   
-  //actual function for player input
-  let playerInput = prompt("Choose Rock, Paper, or Scissors");
-
-  let testInput = playerInput.toLowerCase();
-
-  while (CHOICE.includes(testInput) != true) {
-    testInput = prompt(`Oops! Check your spelling and try again.
-    
-    Rock, Paper, or Scissors?`);
-  }  
   
-  return testInput;
-}
-// Test output
-//console.log(computerSelection);
-//console.log(playerSelection);
-// works
+};
+
 
 //play 1 round and record winner as a string
 
@@ -61,9 +47,9 @@ function playRound(playerSelection, computerSelection) {
   }
   
   return message;
-}
+};
 
-//console.log(playRound());
+
 
 function game() {
   let scoreStart = {
@@ -98,20 +84,20 @@ function game() {
     return roundResult;
   };
 
-  let i = 5;
+  // let i = 5;
 
-  while (i > 0) {
-    console.log(getScore());
-    i--;
-  };
+  // while (i > 0) {
+  //   console.log(getScore());
+  //   i--;
+  // };
 
-  if (scoreRound.player == scoreRound.computer) {
-    console.log(`Looks like it's a tie game. Play again?`);
-  } else if (scoreRound.player > scoreRound.computer) {
-    console.log(`Congratulations! You won this match! Play again?`);
-  } else {
-    console.log(`Sorry... The computer won this match. Better luck next time!`);
-  }
+  // if (scoreRound.player == scoreRound.computer) {
+  //   console.log(`Looks like it's a tie game. Play again?`);
+  // } else if (scoreRound.player > scoreRound.computer) {
+  //   console.log(`Congratulations! You won this match! Play again?`);
+  // } else {
+  //   console.log(`Sorry... The computer won this match. Better luck next time!`);
+  // }
 };
 
 game();
