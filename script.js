@@ -1,21 +1,42 @@
-//Rock ~ Paper ~ Scissors: Console Game
+//Rock ~ Paper ~ Scissors: UI
 
-//available selections
-let CHOICE = ["rock", "paper", "scissors"];
+const buttons = document.querySelectorAll('button');
 
-//get computer's selection (store in var)
-function computerCHOICE() {
-  return CHOICE[Math.floor(Math.random() * CHOICE.length)];
-}
+// Add event listener to each button and ID which was clicked
+buttons.forEach((button) => {
+  button.addEventListener('click', 
+  (e) => {  
+    let buttonId = e.target.id;  
+    let choice = document.getElementById(buttonId);
+    // console.log(choice);
+   
+    //identifies element so it can be selected outside of the event handler
+    choice.classList.toggle('inPlay'); 
 
-//get's human's selection (store in var)
+    // allows id attribute to be passed as a variable
+    playerCHOICE();
+    console.log('CLICKED ON: ' + playerCHOICE());
+    
+    playRound();
+    console.log('CLICKED RESULT: ' + playRound());  
+
+    // removes inPlay class to reset for another round
+    choice.classList.toggle('inPlay');
+  });
+});
+
+//get player's selection for use as variable
 function playerCHOICE() {
-  //random choice generator for effecient testing
-  //return CHOICE[Math.floor(Math.random() * CHOICE.length)];
-  
-  
+  let roundPlay = document.querySelector('button.inPlay');
+  let roundPlayName = roundPlay.id;
+  return roundPlayName;
 };
 
+//get computer's selection for use as variable
+function computerCHOICE() {
+  let CHOICE = ["rock", "paper", "scissors"];
+  return CHOICE[Math.floor(Math.random() * CHOICE.length)];
+}
 
 //play 1 round and record winner as a string
 
@@ -100,4 +121,3 @@ function game() {
   // }
 };
 
-game();
