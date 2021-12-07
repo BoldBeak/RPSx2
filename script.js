@@ -18,7 +18,7 @@ buttons.forEach((button) => {
     console.log('CLICKED ON: ' + playerCHOICE());
     
     playRound();
-    console.log('CLICKED RESULT: ' + playRound());  
+    //console.log('CLICKED RESULT: ' + playRound());  
 
     // removes inPlay class to reset for another round
     choice.classList.toggle('inPlay');
@@ -39,34 +39,52 @@ function computerCHOICE() {
 }
 
 //play 1 round and record winner as a string
-
 function playRound(playerSelection, computerSelection) {
   playerSelection = playerCHOICE();
   computerSelection = computerCHOICE();
 
-  // console.log(playerSelection);
-  // console.log(computerSelection);
+  console.log('PLAYER PICKED: ' + playerSelection);
+  console.log('COMPUTER PICKED: ' + computerSelection);
 
+  let message = '';
   let winner = {
     'tie': `It's a tie. You and the computer both chose ${playerSelection}. Try again!`,
-    'win': `You win! Your ${playerSelection} beats computer's ${computerSelection}. Let's play again!`,
-    'lose': `You lose! Computer's ${computerSelection} beat your ${playerSelection}. Try again!`
+    'player': `You win! Your ${playerSelection} beats computer's ${computerSelection}. Let's play again!`,
+    'computer': `You lose! Computer's ${computerSelection} beat your ${playerSelection}. Try again!`
   };
   
-  let message = '';
+  let scoreStart = {
+    'tie': 0,
+    'player': 0,
+    'computer': 0
+  };
+
+  let scoreRound = {};
   
-  if (computerSelection == playerSelection) {
-    message = winner.tie;
-  } else if (computerSelection == "rock" && playerSelection == "paper") {
-    message = winner.win;
-  } else if (computerSelection == 'paper' && playerSelection == 'scissors'){
-    message = winner.win;
-  } else if (computerSelection == 'scissors' && playerSelection == 'rock') {
-    message = winner.win;
-  } else {
-    message = winner.lose;
-  }
   
+    if (computerSelection == playerSelection) {
+      message = winner.tie;
+      scoreStart.tie += 1;
+      scoreRound = scoreStart;
+    } else if (computerSelection == "rock" && playerSelection == "paper") {
+      message = winner.player;
+      scoreStart.player += 1;
+      scoreRound = scoreStart;
+    } else if (computerSelection == 'paper' && playerSelection == 'scissors'){
+      message = winner.player;
+      scoreStart.player += 1;
+      scoreRound = scoreStart;
+    } else if (computerSelection == 'scissors' && playerSelection == 'rock') {
+      message = winner.player;
+      scoreStart.player += 1;
+      scoreRound = scoreStart;
+    } else {
+      message = winner.computer;
+      scoreStart.computer += 1;
+      scoreRound = scoreStart;
+    }
+  
+  console.log(scoreRound);
   return message;
 };
 
