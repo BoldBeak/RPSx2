@@ -20,6 +20,8 @@ buttons.forEach((button) => {
     playRound();
     //console.log('CLICKED RESULT: ' + playRound());  
 
+    game();
+    
     // removes inPlay class to reset for another round
     choice.classList.toggle('inPlay');
   });
@@ -117,20 +119,19 @@ function hideMessage() {
 };
 
 function game() {
- 
-  let i = 5;
+  let roundSum = +playerTally.value + +computerTally.value + +tieTally.value;
+  console.log('roundSum = ' + roundSum);
+  // while (i > 0) {
+  //   console.log(getScore());
+  //   i--;
+  // };
 
-  while (i > 0) {
-    console.log(getScore());
-    i--;
-  };
-
-  if (scoreRound.player == scoreRound.computer) {
-    console.log(`Looks like it's a tie game. Play again?`);
-  } else if (scoreRound.player > scoreRound.computer) {
-    console.log(`Congratulations! You won this match! Play again?`);
-  } else {
-    console.log(`Sorry... The computer won this match. Better luck next time!`);
-  }
+  // if (scoreRound.player == scoreRound.computer) {
+  //   console.log(`Looks like it's a tie game. Play again?`);
+  // } else if (scoreRound.player > scoreRound.computer) {
+  //   console.log(`Congratulations! You won this match! Play again?`);
+  // } else {
+  //   console.log(`Sorry... The computer won this match. Better luck next time!`);
+  // }
 };
 
