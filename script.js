@@ -20,7 +20,7 @@ buttons.forEach((button) => {
     playRound();
     //console.log('CLICKED RESULT: ' + playRound());  
 
-    game();
+    setTimeout(game, 5000);
     
     // removes inPlay class to reset for another round
     choice.classList.toggle('inPlay');
@@ -121,17 +121,31 @@ function hideMessage() {
 function game() {
   let roundSum = +playerTally.value + +computerTally.value + +tieTally.value;
   console.log('roundSum = ' + roundSum);
-  // while (i > 0) {
-  //   console.log(getScore());
-  //   i--;
-  // };
 
-  // if (scoreRound.player == scoreRound.computer) {
-  //   console.log(`Looks like it's a tie game. Play again?`);
-  // } else if (scoreRound.player > scoreRound.computer) {
-  //   console.log(`Congratulations! You won this match! Play again?`);
-  // } else {
-  //   console.log(`Sorry... The computer won this match. Better luck next time!`);
-  // }
+  
+  if (roundSum === 5) {
+    matchMessage = '';
+    messageBox.setAttribute('style', 'visibility: visible');
+
+    if (playerTally.value == computerTally.value) {
+      matchMessage = `Looks like it's a tie game. Play again?`;
+    } else if (playerTally.value > computerTally.value) {
+      matchMessage = `Congratulations! You won this match! Play again?`;
+    } else {
+      matchMessage = `Sorry... The computer won this match. Better luck next time!`;
+    }
+
+    messageArea.textContent = matchMessage;
+
+    messageArea.addEventListener('click', resetGame);
+  };
+
+  function resetGame() {
+    playerTally.value = 0;
+    tieTally.value = 0;
+    computerTally.value = 0;
+    messageBox.setAttribute('style', 'hidden');
+  }
+
 };
 
