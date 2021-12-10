@@ -6,6 +6,7 @@ body {
   flex-direction: column;
   width: 100%;
   align-items: center;
+  font-family: 'Average Sans', 'Comic Sans';
 }
 
 button {
@@ -76,6 +77,11 @@ input {
   background-color: #2c4351;
   padding: 1em;
   visibility: hidden;
+  position: absolute;
+  top: 30%;
+  border: 5px solid #ffffff;
+  outline: 2px solid #2c4351;
+  border-radius: 10px;
 }
 
 .messageArea {
@@ -84,4 +90,21 @@ input {
   line-height: 2em;
   color: #ffffff;
   padding: 1em;
+  pointer-events: none;
+}
+
+.svg-inline--fa {
+  height: 3em;
+}
+
+path {
+  fill: #2c4351;
+}
+
+svg {
+  pointer-events: none;
+}
+
+.inPlay, .compPlay {
+  background-color: #B6C649;
 }
