@@ -59,11 +59,21 @@ h1, h2 {
   height: 100%;
 }
 
+.scoreBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 input {
+  font-family: inherit;
+  margin-top: .4em;
   font-size: 2em;
   width: 3rem;
   height: 3rem;
-  text-align: center;  
+  text-align: right;
+  border-radius: 10px;
 }
 
 .scoreBox {
