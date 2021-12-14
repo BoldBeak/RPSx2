@@ -59,8 +59,10 @@ let messageArea = document.querySelector('.messageArea');
 
 //play 1 round and record winner as a string
 function playRound(playerSelection, computerSelection) {
+  // get player and computer selections for comparison
   playerSelection = playerCHOICE();
   computerSelection = computerCHOICE();
+
 
   let message = '';
   let winner = {
@@ -69,6 +71,7 @@ function playRound(playerSelection, computerSelection) {
     'computer': `You lose! Computer's ${computerSelection} beat your ${playerSelection}. Try again!`
   };
   
+  // compare and determine winner
     if (computerSelection == playerSelection) {
       message = winner.tie;
       scoreStart.tie += 1;
@@ -96,12 +99,12 @@ function playRound(playerSelection, computerSelection) {
       computerTally.value = scoreRound.computer;
     }
     
+    // display round winner announcement then hide on click
     messageArea.textContent = message;
     setTimeout(displayMessage, 1000);
     messageBox.addEventListener('click', hideMessage);
 
-    console.log(scoreStart);
-    console.log(scoreRound);
+    // pass winner to next function
     return message;
 };
   
