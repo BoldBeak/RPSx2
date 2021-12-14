@@ -8,17 +8,13 @@ buttons.forEach((button) => {
   (e) => {  
     let buttonId = e.target.id;  
     let choice = document.getElementById(buttonId);
-    // console.log(choice);
-   
-    //identifies element so it can be selected outside of the event handler
+    
+    //identifies element so it can be selected for variable assignment outside of the event handler
     choice.classList.toggle('inPlay'); 
 
-    // allows id attribute to be passed as a variable
     playerCHOICE();
-    console.log('CLICKED ON: ' + playerCHOICE());
     
-    playRound();
-    //console.log('CLICKED RESULT: ' + playRound());  
+    playRound(); 
 
     setTimeout(game, 5000);
     
@@ -26,6 +22,7 @@ buttons.forEach((button) => {
     choice.classList.toggle('inPlay');
   });
 });
+
 
 //get player's selection for use as variable
 function playerCHOICE() {
@@ -44,7 +41,9 @@ let scoreStart = {
   'tie': 0,
   'player': 0,
   'computer': 0
-};
+  };
+
+let scoreRound = {};
 
 let tieTally = document.querySelector('#tieScore')
 let playerTally = document.querySelector('#playerScore');
@@ -63,17 +62,12 @@ function playRound(playerSelection, computerSelection) {
   playerSelection = playerCHOICE();
   computerSelection = computerCHOICE();
 
-  console.log('PLAYER PICKED: ' + playerSelection);
-  console.log('COMPUTER PICKED: ' + computerSelection);
-
   let message = '';
   let winner = {
     'tie': `It's a tie. You and the computer both chose ${playerSelection}. Try again!`,
     'player': `You win! Your ${playerSelection} beats computer's ${computerSelection}. Let's play again!`,
     'computer': `You lose! Computer's ${computerSelection} beat your ${playerSelection}. Try again!`
   };
-  
-  let scoreRound = {};
   
     if (computerSelection == playerSelection) {
       message = winner.tie;
@@ -104,11 +98,13 @@ function playRound(playerSelection, computerSelection) {
     
     messageArea.textContent = message;
     setTimeout(displayMessage, 1000);
-    setTimeout(hideMessage, 4000);
-    
+    messageBox.addEventListener('click', hideMessage);
+
+    console.log(scoreStart);
     console.log(scoreRound);
     return message;
-  };
+};
+  
   
 function displayMessage() {
   messageBox.setAttribute('style', 'visibility: visible');
@@ -120,13 +116,8 @@ function hideMessage() {
 
 function game() {
   let roundSum = +playerTally.value + +computerTally.value + +tieTally.value;
-  console.log('roundSum = ' + roundSum);
-
   
   if (roundSum === 5) {
-    matchMessage = '';
-    messageBox.setAttribute('style', 'visibility: visible');
-
     if (playerTally.value == computerTally.value) {
       matchMessage = `Looks like it's a tie game. Play again?`;
     } else if (playerTally.value > computerTally.value) {
@@ -137,14 +128,20 @@ function game() {
 
     messageArea.textContent = matchMessage;
 
-    messageArea.addEventListener('click', resetGame);
+    messageBox.addEventListener('click', resetGame);  
   };
 
   function resetGame() {
+    roundSum = 0;
     playerTally.value = 0;
     tieTally.value = 0;
     computerTally.value = 0;
+    scoreStart.tie = 0;
+    scoreStart.player = 0;
+    scoreStart.computer = 0;
     messageBox.setAttribute('style', 'hidden');
+    
+    messageBox.removeEventListener('click', resetGame);
   }
 
 };
