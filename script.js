@@ -10,19 +10,19 @@ buttons.forEach((button) => {
     let choice = document.getElementById(buttonId);
     
     //identifies element so it can be selected for variable assignment outside of the event handler
-    choice.classList.toggle('inPlay'); 
-
+    choice.classList.add('inPlay'); 
+    
     playerCHOICE();
+    //computerCHOICE();
     
     playRound(); 
 
     setTimeout(game, 5000);
     
     // removes inPlay class to reset for another round
-    choice.classList.toggle('inPlay');
+    // choice.classList.toggle('inPlay');
   });
 });
-
 
 //get player's selection for use as variable
 function playerCHOICE() {
@@ -33,9 +33,22 @@ function playerCHOICE() {
 
 //get computer's selection for use as variable
 function computerCHOICE() {
-  let CHOICE = ["rock", "paper", "scissors"];
-  return CHOICE[Math.floor(Math.random() * CHOICE.length)];
-}
+  let CHOICES = ["rock", "paper", "scissors"];
+  let choiceId = CHOICES[Math.floor(Math.random() * CHOICES.length)];
+  let compBtnById = document.querySelector(`#${choiceId}`);
+
+  compBtnById.classList.toggle('compInPlay');
+  console.log(compBtnById.id);
+  return choiceId;
+};
+
+function checkTie(pBtn, cBtn) {
+  if (pBtn === cBtn) {
+    let tieClassId = document.querySelector('.compInPlay');
+    tieClassId.classList.toggle('tieInPlay');
+  }
+};
+
 
 let scoreStart = {
   'tie': 0,
@@ -57,12 +70,15 @@ let messageBox = document.querySelector('.messageBox');
 let messageArea = document.querySelector('.messageArea');
 
 
+
 //play 1 round and record winner as a string
 function playRound(playerSelection, computerSelection) {
   // get player and computer selections for comparison
   playerSelection = playerCHOICE();
   computerSelection = computerCHOICE();
 
+  checkTie(playerSelection, computerSelection);
+  
 
   let message = '';
   let winner = {
@@ -114,7 +130,15 @@ function displayMessage() {
 };
 
 function hideMessage() {
+  let playerButton = document.querySelector('.inPlay');
+  let computerButton = document.querySelector('.compInPlay');
+  let tieButton = document.querySelector('.tieInPlay');
+
   messageBox.setAttribute('style', 'visibility: hidden');
+
+  playerButton.classList.toggle('inPlay');
+  computerButton.classList.toggle('compInPlay');
+  tieButton.classList.toggle('tieInPlay');
 };
 
 function game() {

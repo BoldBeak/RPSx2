@@ -142,6 +142,16 @@ svg {
   pointer-events: none;
 }
 
-.inPlay, .compPlay {
+.inPlay {
   background-color: #B6C649;
+}
+
+.compInPlay {
+  background-color: #6464a6;
+}
+
+.tieInPlay {
+  background-color: #B6C649;
+  border: 7px groove #6464a6;
+  border-radius: 10px;
 }
